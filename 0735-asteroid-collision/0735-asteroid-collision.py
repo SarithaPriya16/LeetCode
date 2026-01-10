@@ -1,0 +1,22 @@
+class Solution(object):
+    def asteroidCollision(self, asteroids):
+        """
+        :type asteroids: List[int]
+        :rtype: List[int]
+        """
+        stack=[]
+        for a in asteroids:
+            alive=True
+            while stack and alive and stack[-1]>0 and a<0:
+                if abs(stack[-1])<abs(a):
+                    stack.pop()
+                elif abs(stack[-1]) == abs(a):
+                    stack.pop()
+                    alive=False
+                else:
+                    alive=False
+        if alive:
+            stack.append(a)
+        return stack
+
+        
